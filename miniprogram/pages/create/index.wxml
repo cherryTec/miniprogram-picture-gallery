@@ -1,0 +1,78 @@
+<view class="container">
+  <t-navbar title="创建图片" left-arrow bind:go-back="goBack" t-class="header" />
+
+  <view class="content-wrapper">
+    <t-textarea 
+      value="{{prompt}}" 
+      placeholder="描述你想创建的图片...例如：主角 + 在哪里 + 做什么 + 什么风格？" 
+      bind:change="updatePrompt" 
+      maxlength="500"
+      autosize="{{ { minRows: 4, maxRows: 8 } }}"
+      indicator
+      disableDefaultPadding="{{true}}"
+      class="prompt-input"
+    />
+    
+    <t-button 
+      variant="outline" 
+      size="medium" 
+      icon="lightning" 
+      bind:tap="showExamples" 
+      block
+      class="inspiration-button"
+    >
+      查看提示词示例
+    </t-button>
+    
+    <view class="tag-container">
+      <view 
+        wx:for="{{styleTags}}" 
+        wx:key="id" 
+        class="tag {{item.selected ? 'tag-selected' : ''}}" 
+        bind:tap="toggleStyleTag"
+        data-index="{{index}}"
+      >
+        {{item.name}}
+      </view>
+    </view>
+    
+    <t-button 
+      theme="primary" 
+      size="large" 
+      block
+      bind:tap="generateImage" 
+      class="generate-button"
+    >
+      生成图片
+    </t-button>
+    
+    <view class="negative-prompt">
+      <view class="negative-prompt-label">不想要的元素（可选）</view>
+      <t-input 
+        value="{{negativePrompt}}" 
+        placeholder="例如：不要文字、不要模糊..." 
+        bind:change="updateNegativePrompt" 
+        class="negative-input" 
+      />
+    </view>
+  </view>
+
+  <!-- 提示词示例弹窗 -->
+  <t-popup visible="{{showPromptExamples}}" bind:visible-change="hideExamples" placement="bottom">
+    <view class="examples-container">
+      <view class="examples-title">提示词示例</view>
+      <view class="examples-list">
+        <view 
+          wx:for="{{promptExamples}}" 
+          wx:key="index" 
+          class="example-item" 
+          bind:tap="useExample" 
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+      </view>
+      <t-button bind:tap="hideExamples" size="large" variant="outline" block class="close-button">关闭</t-button>
+    </view>
+  </t-popup>
+</view> 

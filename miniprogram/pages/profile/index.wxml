@@ -1,0 +1,38 @@
+<view class="container">
+  <t-navbar title="我的" t-class="header" />
+
+  <!-- 未登录状态 -->
+  <block wx:if="{{!isLogin}}">
+    <view class="login-container">
+      <t-image src="https://cdn-icons-png.flaticon.com/128/3059/3059518.png" shape="round" width="120rpx" height="120rpx" class="login-image" />
+      <view class="login-text">请登录后查看您的个人画廊</view>
+      <t-button theme="primary" size="large" bind:tap="login" class="login-button" style="background-color: #07C160; border-color: #07C160;">
+        <t-icon name="logo-wechat" size="48rpx" slot="icon" />微信一键登录
+      </t-button>
+    </view>
+  </block>
+  
+  <!-- 已登录状态 -->
+  <block wx:else>
+    <view class="user-profile">
+      <t-avatar image="{{userInfo.avatarUrl}}" size="large" class="avatar" />
+      <view class="user-info">
+        <view class="user-name">{{userInfo.nickName}}</view>
+        <view class="user-tagline">欢迎使用AI画廊</view>
+      </view>
+    </view>
+
+    <view class="section-title">个人画廊</view>
+    
+    <view class="masonry-grid">
+      <view wx:for="{{images}}" wx:key="id" class="image-card">
+        <t-image src="{{item.imageUrl}}" mode="widthFix" shape="round" />
+        <view class="prompt-text">{{item.prompt}}</view>
+      </view>
+    </view>
+
+    <view class="create-button" bindtap="navigateToCreate">
+      <t-icon name="add" size="48rpx" color="#fff" />
+    </view>
+  </block>
+</view> 

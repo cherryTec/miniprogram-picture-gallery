@@ -1,0 +1,55 @@
+.container {
+  padding-bottom: 100rpx;
+  background-color: #f5f5f5;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 24rpx;
+  padding: 24rpx;
+}
+
+.image-card {
+  border-radius: 24rpx;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+.prompt-text {
+  padding: 16rpx 24rpx;
+  font-size: 28rpx;
+  color: #666;
+  max-height: 128rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.loading-indicator {
+  padding: 40rpx;
+  text-align: center;
+  color: #666;
+}
+
+.create-button {
+  position: fixed;
+  right: 40rpx;
+  bottom: 160rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: #0052d9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 20rpx rgba(0, 82, 217, 0.3);
+  z-index: 900;
+} 

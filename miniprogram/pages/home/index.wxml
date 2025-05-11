@@ -1,0 +1,16 @@
+<view class="container">
+  <t-navbar title="AI画廊" t-class="header" />
+
+  <view class="masonry-grid">
+    <view wx:for="{{images}}" wx:key="id" class="image-card">
+      <t-image src="{{item.imageUrl}}" mode="widthFix" shape="round" />
+      <view class="prompt-text">{{item.prompt}}</view>
+    </view>
+  </view>
+
+  <t-loading theme="circular" size="48rpx" loading="{{isLoading}}" text="正在加载更多..." layout="vertical" class="loading-indicator" />
+
+  <view class="create-button" bindtap="navigateToCreate">
+    <t-icon name="add" size="48rpx" color="#fff" />
+  </view>
+</view> 

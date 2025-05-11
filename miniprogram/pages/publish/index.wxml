@@ -1,0 +1,34 @@
+<view class="container">
+  <t-navbar title="图片已生成" left-arrow bind:go-back="goBack" t-class="header" />
+
+  <view class="content-wrapper">
+    <view class="image-container">
+      <t-image src="{{imageUrl}}" mode="widthFix" shape="round" />
+      
+      <view class="prompt-display">
+        <view class="prompt-title">提示词</view>
+        <view class="prompt-content">{{prompt}}</view>
+      </view>
+    </view>
+
+    <view class="action-container">
+      <t-button 
+        variant="outline" 
+        size="large" 
+        class="regenerate-button" 
+        bind:tap="regenerateImage"
+      >
+        重新生成
+      </t-button>
+      
+      <t-button 
+        theme="primary" 
+        size="large" 
+        class="publish-button" 
+        bind:tap="publishImage"
+      >
+        发布
+      </t-button>
+    </view>
+  </view>
+</view> 
