@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建图片 - AI画廊</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .t-design {
+            --td-brand-color: #0052d9;
+            --td-brand-color-light: #ecf2fe;
+        }
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        .prompt-input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 1rem;
+            min-height: 120px;
+            resize: none;
+            margin-bottom: 16px;
+            background-color: white;
+        }
+        .prompt-input:focus {
+            border-color: var(--td-brand-color);
+            outline: none;
+            box-shadow: 0 0 0 2px var(--td-brand-color-light);
+        }
+        .generate-button {
+            background-color: var(--td-brand-color);
+            color: white;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1rem;
+            border: none;
+            width: 100%;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 82, 217, 0.3);
+        }
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .tag {
+            background-color: var(--td-brand-color-light);
+            color: var(--td-brand-color);
+            border-radius: 16px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        .inspiration-button {
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .inspiration-icon {
+            margin-right: 8px;
+        }
+        .negative-prompt {
+            background-color: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+        }
+        .negative-prompt-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .negative-input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.9rem;
+            resize: none;
+        }
+        .page-header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            padding: 16px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+        }
+        .back-button {
+            position: absolute;
+            left: 16px;
+        }
+    </style>
+</head>
+<body class="t-design pb-16">
+    <div class="page-header">
+        <a href="home.html" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </a>
+        创建图片
+    </div>
+
+    <div class="p-4">
+        <textarea class="prompt-input" placeholder="描述你想创建的图片...例如：主角 + 在哪里 + 做什么 + 什么风格？"></textarea>
+        
+        <button class="inspiration-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="inspiration-icon h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            查看提示词示例
+        </button>
+        
+        <div class="tag-container">
+            <span class="tag">写实</span>
+            <span class="tag">动漫</span>
+            <span class="tag">电影感</span>
+            <span class="tag">梦幻</span>
+            <span class="tag">水彩</span>
+            <span class="tag">复古</span>
+            <span class="tag">未来</span>
+            <span class="tag">赛博朋克</span>
+        </div>
+        
+        <button class="generate-button"><a href="publish.html" >生成图片</a></button>
+        
+        <div class="negative-prompt">
+            <div class="negative-prompt-label">不想要的元素（可选）</div>
+            <input type="text" class="negative-input" placeholder="例如：不要文字、不要模糊...">
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="flex justify-around">
+            <a href="home.html" class="flex flex-col items-center text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="text-xs mt-1">首页</span>
+            </a>
+            <a href="profile-logged.html" class="flex flex-col items-center text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

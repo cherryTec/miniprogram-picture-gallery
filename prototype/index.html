@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI画廊小程序原型图</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .phone-container {
+            width: 390px; /* iPhone 15 Pro width */
+            height: 844px; /* iPhone 15 Pro height */
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 12px solid #121212;
+            position: relative;
+            background-color: white;
+            margin: 20px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background-color: #121212;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            z-index: 10;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .screen-label {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">AI画廊小程序原型图</h1>
+    
+    <div class="flex flex-wrap justify-center">
+        <!-- 首页 -->
+        <div class="flex flex-col items-center">
+            <div class="screen-label">首页</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="home.html"></iframe>
+            </div>
+        </div>
+        
+        <!-- 我的 (未登录状态) -->
+        <div class="flex flex-col items-center">
+            <div class="screen-label">我的 (未登录)</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="profile-not-logged.html"></iframe>
+            </div>
+        </div>
+        
+        <!-- 我的 (已登录状态) -->
+        <div class="flex flex-col items-center">
+            <div class="screen-label">我的 (已登录)</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="profile-logged.html"></iframe>
+            </div>
+        </div>
+        
+        <!-- 创建图片 -->
+        <div class="flex flex-col items-center">
+            <div class="screen-label">创建图片</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="create.html"></iframe>
+            </div>
+        </div>
+        
+        <!-- 图片已生成待发布 -->
+        <div class="flex flex-col items-center">
+            <div class="screen-label">图片已生成</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="publish.html"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
